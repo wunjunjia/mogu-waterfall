@@ -1,24 +1,7 @@
 # mogu-waterfall
 
-## Project setup
-```
-npm install
-```
+#### 使用vue-cli这个脚骨架搭建的项目
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
++ npm install
++ npm run serve
++ 打开浏览器输入http://localhost:8080即可访问
