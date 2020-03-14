@@ -57,14 +57,14 @@ export default {
         { name: 'fourth-col', list: [] },
         { name: 'fifth-col', list: [] },
       ],
-      list: [],
-      pageSize: 21,
+      list: [], // 存放请求的数据
+      pageSize: 21,  // 每次请求的数据个数
       currentPage: 1,
-      request: false,
-      finished: false,
-      isRender: false,
-      renderIndex: 0,
-      lastScrollTop: -1,
+      request: false, // 是否正在请求
+      finished: false,  // 是否已经请求所有数据
+      isRender: false,  // 是否正在渲染
+      renderIndex: 0, // 当前渲染的item下标
+      lastScrollTop: -1, // 上级滚动的距离
     };
   },
   computed: {
@@ -110,10 +110,14 @@ export default {
      });
     },
     renderWaterfall() {
+      // 正在渲染的话返回
       if (this.isRender) return;
+      // 如果已经请求所有数据且渲染的item是list数组中最后一个时返回
       if (this.finished && this.renderIndex === this.list.length - 1) return;
       const { scrollTop, clientHeight } = document.documentElement;
+      // 如果高度最小的列减去滚动的高度大于可视区的1.5倍返回
       if (this.miniHeight() - scrollTop > clientHeight * 1.5) return;
+      // 如果当前已经渲染的个数加上一页的请求数量大于当前数组个数就发起请求。
       if (!this.finished && !this.request && this.renderIndex + this.pageSize >= this.list.length) this.loadData();
       this.isRender = true;
       this.columns[this.miniIndex()].list.push(this.list[this.renderIndex]);
